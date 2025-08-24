@@ -9,7 +9,7 @@ MODEL:
 INPUT:
   SIZE_TRAIN: [256, 256]
   SIZE_TEST: [256, 256]
-  PROB: 0 # random horizontal flip
+  PROB: 0.0 # random horizontal flip
   PADDING: 0
 
 DATASETS:
