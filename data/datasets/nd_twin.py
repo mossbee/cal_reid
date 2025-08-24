@@ -10,28 +10,34 @@ class NDTwin(BaseImageDataset):
 
     def __init__(self, root='your_data_root', verbose=True, **kwargs):
         super(NDTwin, self).__init__()
-        self.data_root = root
+        self.data_root = root  # This should be the root directory
         
         # Load train and test splits from txt files
         train_txt = osp.join(root, 'train.txt')
         test_txt = osp.join(root, 'test.txt')
         
         self._check_before_run(train_txt, test_txt)
-
+        
         # Process training data (for Re-ID style training)
         train = self._process_train_data(train_txt, relabel=True)
         
         # Process test data (for verification evaluation)
         test_pairs = self._process_test_data(test_txt)
-
+        
         if verbose:
             print("=> NDTwin loaded")
             self.print_dataset_statistics(train, test_pairs)
-
+        
         self.train = train
         self.test_pairs = test_pairs
-
+        
+        # For compatibility with existing code, create dummy query and gallery
+        self.query = train[:len(train)//2]  # Use first half as query
+        self.gallery = train[len(train)//2:]  # Use second half as gallery
+        
         self.num_train_pids, self.num_train_imgs, self.num_train_cams = self.get_imagedata_info(self.train)
+        self.num_query_pids, self.num_query_imgs, self.num_query_cams = self.get_imagedata_info(self.query)
+        self.num_gallery_pids, self.num_gallery_imgs, self.num_gallery_cams = self.get_imagedata_info(self.gallery)
 
     def _check_before_run(self, train_txt, test_txt):
         """Check if all files are available"""

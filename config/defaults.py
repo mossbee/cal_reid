@@ -46,8 +46,8 @@ _C.INPUT.PADDING = 10
 # -----------------------------------------------------------------------------
 _C.DATASETS = CN()
 # List of the dataset names for training, as present in paths_catalog.py
-_C.DATASETS.NAMES = ('market1501')
-
+_C.DATASETS.NAMES = ('ndtwin')
+_C.DATASETS.ROOT_DIR = ('/kaggle/input/nd-twin-256/ND_TWIN_256',)
 # -----------------------------------------------------------------------------
 # DataLoader
 # -----------------------------------------------------------------------------

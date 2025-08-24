@@ -13,9 +13,9 @@ def make_data_loader(cfg):
     val_transforms = build_transforms(cfg, is_train=False)
     num_workers = cfg.DATALOADER.NUM_WORKERS
     if len(cfg.DATASETS.NAMES) == 1:
-        dataset = init_dataset(cfg.DATASETS.NAMES)
+        dataset = init_dataset(cfg.DATASETS.NAMES[0], root=cfg.DATASETS.ROOT_DIR[0])
     else:
-        dataset = init_dataset(cfg.DATASETS.NAMES)
+        dataset = init_dataset(cfg.DATASETS.NAMES, root=cfg.DATASETS.ROOT_DIR[0])
     
     num_classes = dataset.num_train_pids
     train_set = ImageDataset(dataset.train, 'train', train_transforms)
