@@ -14,7 +14,7 @@ INPUT:
 
 DATASETS:
   NAMES: ('ndtwin') #dukemtmc market1501 msmt17
-  ROOT_DIR: ()'/kaggle/input/nd-twin-256/ND_TWIN_256',)
+  ROOT_DIR: ('/kaggle/input/nd-twin-256/ND_TWIN_256',)
 
 VERIFICATION:
   ENABLED: True
